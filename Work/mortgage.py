@@ -18,11 +18,15 @@ while principal > 0:
     if end_month >= month >= start_month:
         principal = principal * (1 + rate / 12) - (payment + bonus_payment)
         total_paid = total_paid + payment + bonus_payment
-        print(month, " ", total_paid, " ", principal)
+        print(
+            f"Month: {month} Total Paid: {total_paid} Principal remaining: {principal}"
+        )
     else:
         principal = principal * (1 + rate / 12) - (payment)
         total_paid = total_paid + payment
-        print(month, " ", total_paid, " ", principal)
+        print(
+            f"Month: {month} Total Paid: {total_paid} Principal remaining: {principal}"
+        )
     month += 1
 print("Total paid", total_paid)
 print("Months:", month)
