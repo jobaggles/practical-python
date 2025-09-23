@@ -2,12 +2,12 @@
 #
 # Exercise 1.27
 import csv
+import sys
 
 
 def portfolio_cost(filename):
     portfolio_total = 0
-    filepath = "Data/" + filename
-    with open(filepath, "rt") as f:
+    with open(filename, "rt") as f:
         next(f)
         for line in csv.reader(f):
             try:
@@ -18,4 +18,14 @@ def portfolio_cost(filename):
                 )
                 continue
             portfolio_total = portfolio_total + (float(line[1]) * float(line[2]))
-    print(portfolio_total)
+    return portfolio_total
+
+
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    print("Passing default file path Data/portfolio.csv")
+    filename = "Data/portfolio.csv"
+
+cost = portfolio_cost(filename)
+print("Total cost:", cost)
