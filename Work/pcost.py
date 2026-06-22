@@ -58,6 +58,21 @@ def read_portfolio_dict(filename):
     return list, portfolio_total
 
 
+def read_prices(filename):
+    prices = {}
+    with open(filename, "rt") as f:
+        next(f)
+        for line in csv.reader(f):
+            try:
+                prices = {line[0]: float(line[1])}
+            except ValueError:
+                print(
+                    f"Could not convert stock {line[0]}, perhaps it has missing values."
+                )
+                continue
+    return prices
+
+
 if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
@@ -67,6 +82,9 @@ else:
 # cost = portfolio_cost(filename)
 # print("Total cost:", cost)
 
-portfoli0, total = read_portfolio_dict(filename)
-pprint(portfoli0)  # this can be used to print a large dictionary nicely.
+# portfoli0, total = read_portfolio_dict(filename)
+# pprint(portfoli0)  # this can be used to print a large dictionary nicely.
+
+prices = read_prices(filename)
+pprint(prices)
 # print(portfoli0)
